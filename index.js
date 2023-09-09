@@ -1,9 +1,11 @@
+require('dotenv').config();
 const express = require('express');
 const connectmongo = require('./connect');
 const Url = require('./models/url');
 const shortId = require('shortid');
 
-connectmongo('mongodb://127.0.0.1:27017/short-url').then(() => {
+
+connectmongo(process.env.MONGO_URL).then(() => {
     console.log('connected to mongo');
 });
 
@@ -13,7 +15,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 app.set("view engine","ejs");
 app.set("views","./views")
-const port=8000;
+const PORT=process.env.PORT || 8001;
 
 const urlRoutes=require('./routes/url');
 const shortid = require('shortid');
@@ -46,9 +48,10 @@ app.get('/',async (req,res)=>{
     const allUrls=await Url.find({});
     res.render("home",{
         urls:allUrls,
-        id:shortId
+        id:shortId,
+        PORT:PORT
     });
 })
-app.listen(port,()=>{
-    console.log(`server is running at port ${port}`);
+app.listen(PORT,()=>{
+    console.log(`server is running at port ${PORT}`);
 })
