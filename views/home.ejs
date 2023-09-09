@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL SHORTENER</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+</head>
+<style>
+    body{
+       background-image: url("https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhuJaNH44TxqqdSxxBciyqNk5qPopIdZTDCUnbVRXXEDzTzSvXBqUz9w0wvHZ2gqhdrTvfFM5HuslQRyfPLUwiX5igVzzdEPV-BgcLmbVgGIDb-i8D5aMAtDouPkMg0Tzqi1rHioBLSqX1riGUamIYpSLtGziBK3fTPk_7Cw_7uMelew9CfP0sURgjj_Q/s3840/BEAUTY-LANDSCAPE-LAKE-1192023.png");
+       background-repeat: no-repeat;
+       background-size: cover;
+    }
+    h1{
+        text-align: center;
+        color: white;
+        font-size: 50px;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+    li{
+        text-align: center;
+        color: white;
+        font-size: 20px;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        text-decoration: none;
+    }
+    .boi{
+        margin-top: 100px;
+        margin-left: 500px;
+        margin-right: 500px;
+        padding: 50px;
+        background-color: rgba(0, 0, 0, 0.837);
+        border-radius: 20px;
+    }
+    .form-label{
+        color: white;
+    }
+    .form-text{
+        color: rgb(237, 226, 226);
+    }
+    p{
+        color: white;
+        font-size: 20px;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+    }
+</style>
+<body>
+    <h1>URL SHORTENER</h1>
+    <br>
+    <div class="boi">
+        <form method="POST" action="/url">
+            <div class="mb-3">
+              <label for="urlInput" class="form-label">URL</label>
+              <input name="longUrl" type="text" class="form-control" id="urlInput" aria-describedby="urlHelp" placeholder="Enter URL">
+              <div id="urlHelp" class="form-text">Enter the full URL here.</div>
+            </div>
+            <div class="mb-3">
+              <label for="shortUrlInput" class="form-label">What's it about?</label>
+              <input name="word" type="text" class="form-control" id="shortUrlInput" placeholder="Enter a word">
+            </div>
+            <button type="submit" class="btn btn-primary">Generate</button>
+            <% if (locals.id){ %>
+                <div class="mb-3">
+                        <p>URL generated: <a href="http://localhost:8000/<%=locals.id %>">http://localhost:8000/<%=locals.id %></a></p>
+                </div>
+                <%} %>
+          </form>
+          
+    </div>
+</body>
+</html>
